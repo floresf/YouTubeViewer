@@ -30,21 +30,29 @@ class App extends Component {
 			selectedVideo: null
 		};
 
+		this.videoSearch('surfboards');
+
+
+	}
+
+	videoSearch(term) {
+
 		// using the callback function to add the data to the state
-		YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+		YTSearch({key: API_KEY, term: term}, (videos) => {
 			this.setState({
 			videos: videos,
 			selectedVideo: videos[0]
-		});
+		}); 
 			// this.setState({videos: videos});
 			// ^ only works when key and name are the same values
 		});
+
 	}
 
 	render() {
 		return (
 			<div>
-			<SearchBar />
+			<SearchBar onSearchTermChange={term => this.videoSearch(term)} />
 			<VideoDetail video={this.state.selectedVideo} />
 			<VideoList
 				onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
