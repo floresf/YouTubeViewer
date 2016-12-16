@@ -32,7 +32,10 @@ class App extends Component {
 
 		// using the callback function to add the data to the state
 		YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
-			this.setState({ videos });
+			this.setState({
+			videos: videos,
+			selectedVideo: videos[0]
+		});
 			// this.setState({videos: videos});
 			// ^ only works when key and name are the same values
 		});
@@ -43,7 +46,9 @@ class App extends Component {
 			<div>
 			<SearchBar />
 			<VideoDetail video={this.state.selectedVideo} />
-			<VideoList videos={this.state.videos} />
+			<VideoList
+				onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
+				videos={this.state.videos} />
 			</div>
 		);
 	}
