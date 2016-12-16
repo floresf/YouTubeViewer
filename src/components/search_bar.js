@@ -20,7 +20,7 @@ class SearchBar extends Component {
 
 		// can drop parenths around event too --- event =>
 		return (
-			<div>
+			<div className="search-bar">
 				<input 
 				value={this.state.term}
 				onChange={(event) => this.setState({ term: event.target.value })} />
